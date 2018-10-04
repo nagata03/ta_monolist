@@ -11,4 +11,18 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def read(result)  # 検索結果（json形式）をハッシュ形式に変えて返す
+    code = result['itemCode']
+    name = result['itemName']
+    url = result['itemUrl']
+    image_url = result['mediumImageUrls'].first['imageUrl'].gsub('?_ex=128x128', '')
+    
+    {
+      code: code,
+      name: name,
+      url: url,
+      image_url: image_url,
+    }
+  end
+
 end

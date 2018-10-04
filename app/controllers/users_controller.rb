@@ -3,6 +3,9 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @items = @user.items.uniq  # WantとHave両方あるケースを想定
+    @count_want = @user.want_items.count
+    @count_have = @user.have_items.count
   end
 
   def new
